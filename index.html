@@ -7,43 +7,35 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- Sfondo animato -->
+    <canvas id="moneyCanvas"></canvas>
+
     <header>
         <img src="media/logo.jpg" alt="Logo Azienda" class="logo">
         <h1>Hash Valley Vetrina</h1>
     </header>
 
-    <main class="products">
-        <div class="product" onclick="showDescription(1)">
-            <img src="media/prodotto1.jpg" alt="Prodotto 1">
-            <h2>Prodotto 1</h2>
-        </div>
-        <div class="product" onclick="showDescription(2)">
-            <video src="media/prodotto2.mp4" controls></video>
-            <h2>Prodotto 2</h2>
-        </div>
-        <div class="product" onclick="showDescription(3)">
-            <img src="media/prodotto3.jpg" alt="Prodotto 3">
-            <h2>Prodotto 3</h2>
-        </div>
-        <div class="product" onclick="showDescription(4)">
-            <img src="media/prodotto4.jpg" alt="Prodotto 4">
-            <h2>Prodotto 4</h2>
-        </div>
-        <div class="product" onclick="showDescription(5)">
-            <img src="media/prodotto5.jpg" alt="Prodotto 5">
-            <h2>Prodotto 5</h2>
-        </div>
-        <div class="product" onclick="showDescription(6)">
-            <img src="media/prodotto6.jpg" alt="Prodotto 6">
-            <h2>Prodotto 6</h2>
-        </div>
+    <nav class="menu">
+        <h2>Menu Prodotti</h2>
+    </nav>
+
+    <main class="products" id="products">
+        <!-- I prodotti saranno inseriti dinamicamente da script.js -->
     </main>
 
+    <aside class="cart" id="cart">
+        <h2>Carrello</h2>
+        <ul id="cart-items"></ul>
+        <p id="total">Totale: €0</p>
+    </aside>
+
+    <!-- Modal descrizione prodotto -->
     <div id="description-modal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal()">&times;</span>
             <h2 id="modal-title"></h2>
             <p id="modal-desc"></p>
+            <button onclick="addToCart(currentProductId)">Aggiungi al carrello</button>
         </div>
     </div>
 
