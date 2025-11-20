@@ -17,7 +17,7 @@ productsData.forEach(p => {
     const div = document.createElement("div");
     div.className = "product";
     div.onclick = () => showDescription(p.id);
-    
+
     if(p.media.endsWith(".mp4")){
         div.innerHTML = `<video src="${p.media}" controls></video><h2>${p.title}</h2>`;
     } else {
@@ -58,7 +58,14 @@ function updateCart(){
         total += p.price;
     });
     document.getElementById("total").innerText = `Totale: €${total}`;
+    document.getElementById("cart-count").innerText = cart.length;
 }
+
+// Menu inferiore
+const cartSidebar = document.getElementById("cart");
+document.getElementById("cartBtn").onclick = () => cartSidebar.classList.toggle("open");
+document.getElementById("menuBtn").onclick = () => window.scrollTo({top:0, behavior:"smooth"});
+function closeCart(){ cartSidebar.classList.remove("open"); }
 
 // Sfondo soldi che piovono
 const canvas = document.getElementById("moneyCanvas");
@@ -67,7 +74,7 @@ canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
 const money = [];
-for(let i=0;i<50;i++){
+for(let i=0;i<80;i++){
     money.push({
         x: Math.random()*canvas.width,
         y: Math.random()*canvas.height,
@@ -78,8 +85,9 @@ for(let i=0;i<50;i++){
 
 function drawMoney(){
     ctx.clearRect(0,0,canvas.width,canvas.height);
-    ctx.fillStyle = "green";
+    ctx.fillStyle = "lime";
     money.forEach(m=>{
+        ctx.font = `${m.size}px Arial`;
         ctx.fillText("💵", m.x, m.y);
         m.y += m.speed;
         if(m.y>canvas.height)m.y=-20;
@@ -87,7 +95,6 @@ function drawMoney(){
     requestAnimationFrame(drawMoney);
 }
 
-ctx.font = "20px Arial";
 drawMoney();
 
 window.addEventListener("resize", ()=>{
